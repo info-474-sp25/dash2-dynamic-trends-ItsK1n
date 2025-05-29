@@ -16,12 +16,34 @@
     </div>
     
     <!-- INTERACTIVE WIDGETS -->
-    <div class="item horizontal-container">
-        <div class="item">
-            <label for="daySlider"><strong>Select the Day:</strong> <span id="dayValue">1</span></label>
-            <input type="range" id="daySlider" min="1" max="31" value="1" />
-        </div>
+    <div class="item widgetBar centered-widgetBar">
+        <label for="categorySelect">
+        <strong>Select the Day:</strong>
+        </label>
+        <select id="categorySelect">
+            <option value="Overall">Overall</option>
+            <!-- Days 1-31 generated with JavaScript -->
+        </select>
     </div>
+    <script>
+        const select = document.getElementById('categorySelect');
+        const dayValue = document.getElementById('dayValue');
+
+        for (let i = 1; i <= 31; i++) {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = i;
+            select.appendChild(opt);
+        }
+
+        // Display selected day in span
+        select.addEventListener("change", function () {
+            dayValue.textContent = select.value;
+        });
+
+        // Initialize with "Overall"
+        dayValue.textContent = "Overall";
+    </script>
 
     <!-- CHART(S) -->
     <div class="item chart-container">
